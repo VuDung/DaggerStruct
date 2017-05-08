@@ -1,0 +1,20 @@
+ext {
+  ci = 'true' == System.getenv('CI')
+  minSdkVersion = project.hasProperty('dev') ? 21 : 16
+  compileSdkVersion = 25
+  buildToolsVersion = "25.0.3"
+
+  //google libs
+  supportVersion = '25.3.1'
+  googleServiceVersion = '10.2.0'
+  daggerVersion = '2.9'
+  glideVersion = '3.7.0'
+  gsonVersion = '2.8.0'
+  //square libs
+  okHttpVersion = '3.5.0'
+  retrofitVersion = '2.2.0'
+  //reactive libs
+  rxVersion = '2.0.1'
+  //jake wharton libs
+  butterKnifeVersion = '8.5.1'
+}
