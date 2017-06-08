@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'com.jakewharton.butterknife'
 apply from: "$project.rootDir/tools/script-findbugs.gradle"
 apply from: "$project.rootDir/tools/script-lint.gradle"
@@ -13,12 +12,15 @@ android {
   compileSdkVersion rootProject.ext.compileSdkVersion
   buildToolsVersion rootProject.ext.buildToolsVersion
   defaultConfig {
-    applicationId "jp.co.cunit.ssmaintenance"
+    applicationId "com.century.weather"
     minSdkVersion rootProject.ext.minSdkVersion
     targetSdkVersion rootProject.ext.compileSdkVersion
     versionCode 1
     versionName "1.0"
     testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    jackOptions {
+      enabled true
+    }
   }
 
   signingConfigs {
@@ -38,16 +40,15 @@ android {
   }
 
   productFlavors {
-    admin {
-      applicationIdSuffix = ".admin"
+    prod {
       signingConfig signingConfigs.debug
-      resValue "string", "app_name", "SSMaintenance Admin"
+      resValue "string", "app_name", "Daily Weather"
     }
 
-    cleaning {
-      applicationIdSuffix = ".cleaning"
+    dev {
+      applicationIdSuffix = ".dev"
       signingConfig signingConfigs.release
-      resValue "string", "app_name", "SSMaintenance Cleaning"
+      resValue "string", "app_name", "Daily Weather Dev"
     }
   }
   buildTypes {
@@ -62,7 +63,22 @@ android {
       testProguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguardTest-rules.pro'
     }
   }
+
+  android.applicationVariants.all { variant ->
+    variant.outputs.each { output ->
+      def outputFile = output.outputFile
+      if (outputFile != null && outputFile.name.endsWith('.apk')) {
+        def fileName = "Daily Weather_v${defaultConfig.versionName}_${releaseTime()}.apk"
+        output.outputFile = new File(outputFile.parent, fileName)
+      }
+    }
+  }
 }
+
+def releaseTime() {
+  return new Date().format("yyMMdd", TimeZone.getTimeZone("UTC"))
+}
+
 
 dependencies {
   compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -94,8 +110,6 @@ dependencies {
   compile "com.squareup.retrofit2:adapter-rxjava2:$rootProject.ext.retrofitVersion"
   compile "com.squareup.retrofit2:converter-gson:$rootProject.ext.retrofitVersion"
   compile "com.google.code.gson:gson:$rootProject.ext.gsonVersion"
-
-  compile 'com.microsoft.thrifty:thrifty-runtime:0.4.2'
 
   testCompile 'junit:junit:4.12'
   testCompile "org.mockito:mockito-core:2.7.0"
