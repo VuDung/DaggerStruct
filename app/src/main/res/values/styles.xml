@@ -1,11 +1,48 @@
 <resources>
 
-  <!-- Base application theme. -->
-  <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-    <!-- Customize your theme here. -->
-    <item name="colorPrimary">@color/colorPrimary</item>
-    <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-    <item name="colorAccent">@color/colorAccent</item>
+  <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <item name="colorPrimary">@color/black</item>
+    <item name="colorPrimaryDark">@color/black</item>
+    <item name="colorAccent">@color/orange_A400</item>
+    <item name="windowActionModeOverlay">true</item>
+
+    <item name="android:windowBackground">@color/black</item>
+    <item name="android:textColorPrimary">#ffffff</item>
+    <item name="android:textColorSecondary">#8Affffff</item> <!--54%-->
+    <item name="android:textColorPrimaryDisableOnly">#61ffffff</item> <!-- 38%-->
+    <item name="android:textColorHint">#61ffffff</item> <!-- 38%-->
+  </style>
+
+  <style name="AppThemeFullScreen" parent="AppTheme">
+    <!-- FullScreen -->
+    <item name="android:windowNoTitle">true</item>
+    <item name="android:windowActionBar">false</item>
+    <item name="android:windowFullscreen">true</item>
+    <item name="android:windowContentOverlay">@null</item>
+  </style>
+
+  <style name="Toolbar" parent="ThemeOverlay.AppCompat.ActionBar">
+    <!-- color for widget theming, eg EditText. Doesn't effect ActionBar. -->
+    <item name="colorControlNormal">@color/white</item>
+    <!-- color for item menu, icon menu filter-->
+    <item name="actionMenuTextColor">@color/white</item>
+  </style>
+
+  <!-- Text Style -->
+  <style name="TextTitle" parent="TextAppearance.AppCompat.Title"/>
+  <style name="TextSubHead" parent="TextAppearance.AppCompat.Subhead"/>
+  <style name="TextBody" parent="TextAppearance.AppCompat.Body1"/>
+  <style name="TextBody2" parent="TextAppearance.AppCompat.Body2"/>
+  <style name="TextMenu" parent="TextAppearance.AppCompat.Menu"/>
+  <style name="TextDisplay4" parent="TextAppearance.AppCompat.Display4"/>
+  <style name="TextDisplay3" parent="TextAppearance.AppCompat.Display3"/>
+  <style name="TextDisplay2" parent="TextAppearance.AppCompat.Display2"/>
+  <style name="TextDisplay1" parent="TextAppearance.AppCompat.Display1"/>
+  <style name="TextHeadline" parent="TextAppearance.AppCompat.Headline"/>
+  <style name="TextCaption" parent="TextAppearance.AppCompat.Caption"/>
+  <style name="TextButton" parent="TextAppearance.AppCompat.Button"/>
+  <style name="TextButtonAllCaps" parent="TextButton">
+    <item name="android:textAllCaps">true</item>
   </style>
 
 </resources>
